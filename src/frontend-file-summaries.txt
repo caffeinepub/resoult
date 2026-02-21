@@ -1,0 +1,18 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining routes for browse and add-product pages with a shared layout.",
+  "frontend/src/pages/BrowsePage.tsx": "Browse page displaying all products with category filtering, hero section, and loading states.",
+  "frontend/src/pages/AddProductPage.tsx": "Protected page for authenticated users to list new products for sale.",
+  "frontend/src/components/Layout.tsx": "Layout wrapper component providing consistent navigation and footer across all pages.",
+  "frontend/src/components/Navigation.tsx": "Header navigation component with updated branding \"Resoult\", authentication controls, and sell item button for logged-in users.",
+  "frontend/src/components/Footer.tsx": "Footer component with copyright and caffeine.ai attribution with UTM tracking.",
+  "frontend/src/components/ProductForm.tsx": "Form component for creating new product listings with validation and category selection.",
+  "frontend/src/components/ProductCard.tsx": "Card component displaying individual product information including title, description, price, and category badge.",
+  "frontend/src/components/ProductGrid.tsx": "Responsive grid layout component for displaying multiple product cards.",
+  "frontend/src/components/CategoryFilter.tsx": "Category filter component with buttons to filter products by category or show all.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog that prompts new users to enter their name on first login.",
+  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for all backend operations including products, categories, and user profiles with proper cache invalidation.",
+  "frontend/src/index.css": "Global styles with OKLCH color system using orange/amber gradient theme for light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom orange/amber color palette and Inter font family.",
+  "frontend/src/main.tsx": "Application entry point with QueryClient, InternetIdentity, and Toaster providers.",
+  "frontend/index.html": "HTML entry point with updated page title \"Resoult\" displayed in the browser tab."
+}

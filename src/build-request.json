@@ -1,0 +1,56 @@
+{
+  "kind": "build_request",
+  "title": "Update application name to Resoult",
+  "projectName": "Resoult",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-5",
+      "text": "Update the application name from 'Local Marketplace' to 'Resoult' in the frontend HTML title tag",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-change-app-name"
+        ],
+        "quotes": [
+          "Change the app name also"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The browser tab title displays 'Resoult' instead of 'Local Marketplace'",
+        "The HTML title tag in frontend/index.html is updated"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Update the navigation header branding from 'LocalMarket' to 'Resoult' in the Navigation component",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-user-change-app-name"
+        ],
+        "quotes": [
+          "Change the app name also"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The header displays 'Resoult' as the application name",
+        "The branding text in frontend/src/components/Navigation.tsx is updated"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify backend code or data structures",
+    "Preserve all existing styling and layout",
+    "Do not change any immutable paths including hooks and UI components"
+  ],
+  "nonGoals": [
+    "Changing the project directory name or deployment configuration",
+    "Updating any backend references or actor names",
+    "Modifying copyright or footer attribution text"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}
