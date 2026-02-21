@@ -1,10 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Update the application branding from "Local Marketplace" to "Resoult".
+**Goal:** Change the application name from "Resoult" to "Resolt" throughout the frontend.
 
 **Planned changes:**
-- Update the browser tab title to display "Resoult"
-- Update the navigation header branding to display "Resoult"
+- Update HTML page title in index.html
+- Update navigation header branding in Navigation.tsx
+- Update footer copyright text in Footer.tsx
 
-**User-visible outcome:** The application will display "Resoult" as its name in the browser tab and navigation header instead of "Local Marketplace" or "LocalMarket".
+**User-visible outcome:** The application displays "Resolt" as the brand name in the browser tab, header navigation, and footer copyright text.

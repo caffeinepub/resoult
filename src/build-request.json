@@ -1,53 +1,65 @@
 {
   "kind": "build_request",
-  "title": "Update application name to Resoult",
-  "projectName": "Resoult",
+  "title": "Change app name from Resoult to Resolt",
+  "projectName": "Resolt",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-5",
-      "text": "Update the application name from 'Local Marketplace' to 'Resoult' in the frontend HTML title tag",
+      "id": "REQ-1",
+      "text": "Update the HTML page title from 'Resoult' to 'Resolt' in frontend/index.html",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-change-app-name"
+          "msg-1"
         ],
         "quotes": [
-          "Change the app name also"
+          "It is the same change the app name to resolt"
         ]
       },
       "acceptanceCriteria": [
-        "The browser tab title displays 'Resoult' instead of 'Local Marketplace'",
-        "The HTML title tag in frontend/index.html is updated"
+        "The browser tab displays 'Resolt' as the page title"
       ]
     },
     {
-      "id": "REQ-6",
-      "text": "Update the navigation header branding from 'LocalMarket' to 'Resoult' in the Navigation component",
+      "id": "REQ-2",
+      "text": "Update the navigation header branding from 'Resoult' to 'Resolt' in frontend/src/components/Navigation.tsx",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-change-app-name"
+          "msg-1"
         ],
         "quotes": [
-          "Change the app name also"
+          "It is the same change the app name to resolt"
         ]
       },
       "acceptanceCriteria": [
-        "The header displays 'Resoult' as the application name",
-        "The branding text in frontend/src/components/Navigation.tsx is updated"
+        "The header displays 'Resolt' as the application name"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Update the footer copyright text from 'LocalMarket' to 'Resolt' in frontend/src/components/Footer.tsx",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "It is the same change the app name to resolt"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The footer displays '© 2024 Resolt. All rights reserved.'"
       ]
     }
   ],
   "constraints": [
-    "Do not modify backend code or data structures",
-    "Preserve all existing styling and layout",
-    "Do not change any immutable paths including hooks and UI components"
+    "Only change branding text, do not modify any functionality or styling"
   ],
   "nonGoals": [
-    "Changing the project directory name or deployment configuration",
-    "Updating any backend references or actor names",
-    "Modifying copyright or footer attribution text"
+    "Changing the color scheme or visual design",
+    "Modifying backend logic or data structures",
+    "Updating route paths or URLs"
   ],
   "imageRequirements": {
     "required": [],

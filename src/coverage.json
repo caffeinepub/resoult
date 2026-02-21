@@ -1,18 +1,18 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-21T01:32:25.258Z",
+  "generatedAt": "2026-02-21T12:25:28.057Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-5",
-        "summary": "Update the application name from 'Local Marketplace' to 'Resoult' in the frontend HTML title tag",
+        "id": "REQ-1",
+        "summary": "Update the HTML page title from 'Resoult' to 'Resolt' in frontend/index.html",
         "status": "implemented",
         "plannedFiles": [
           "frontend/index.html"
@@ -22,8 +22,8 @@
         ]
       },
       {
-        "id": "REQ-6",
-        "summary": "Update the navigation header branding from 'LocalMarket' to 'Resoult' in the Navigation component",
+        "id": "REQ-2",
+        "summary": "Update the navigation header branding from 'Resoult' to 'Resolt' in frontend/src/components/Navigation.tsx",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/components/Navigation.tsx"
@@ -31,16 +31,27 @@
         "matchedFiles": [
           "frontend/src/components/Navigation.tsx"
         ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Update the footer copyright text from 'LocalMarket' to 'Resolt' in frontend/src/components/Footer.tsx",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Footer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Footer.tsx"
+        ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/index.html",
+    "frontend/src/components/Footer.tsx",
     "frontend/src/components/Navigation.tsx",
     "project_state.json",
     "scratch/component-selection.json",

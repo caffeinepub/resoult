@@ -47,7 +47,7 @@ export default function Navigation() {
         >
           <Store className="h-6 w-6 text-orange-600 dark:text-orange-400" />
           <span className="bg-gradient-to-r from-orange-600 to-amber-600 dark:from-orange-400 dark:to-amber-400 bg-clip-text text-transparent">
-            Resoult
+            Resolt
           </span>
         </button>
 
