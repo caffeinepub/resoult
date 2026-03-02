@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "A marketplace app with tiered subscription plans: Starter (Free), Pro (₹99/month), and Max (₹299/month), featuring buying/selling, auctions, nearby meet-up, shipping, and advanced seller tools.",
+  "architectural_notes": [
+    "Subscription tiers: Starter (Free), Pro (₹99/month), Max (₹299/month) with progressive feature unlocking"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-add-a-pricing-plans-page-accessible-from-the-navigation-bar-that-displays-all-three-subscription-tiers-side-by-side-each-tier-card-must-show-its-name-price-color-indicator-feature-list-and-a-call-to-action-button",
+      "title": "Add a Pricing / Plans page accessible from the navigation bar that displays all three subscription tiers side by side. Each tier card must show its name, price, color indicator, feature list, and a call-to-action button.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-user-s-current-subscription-tier-badge-on-their-seller-profile-starter-shows-no-badge-pro-shows-a-pro-badge-and-max-shows-a-max-verified-badge",
+      "title": "Display the user's current subscription tier badge on their seller profile. Starter shows no badge, Pro shows a 'Pro 🔵' badge, and Max shows a 'Max ✔' verified badge.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-mark-pro-tier-and-max-tier-exclusive-features-in-the-ui-with-locked-indicators-for-users-on-lower-tiers-features-to-gate-advanced-filters-pro-custom-profile-banner-pro-product-analytics-pro-auction-boost-hot-auction-label-pro-featured-homepage-placement-max-advanced-analytics-dashboard-max-ai-price-suggestion-max-bulk-product-upload-max-custom-shop-page-max",
+      "title": "Mark Pro-tier and Max-tier exclusive features in the UI with locked indicators for users on lower tiers. Features to gate: advanced filters (Pro+), custom profile banner (Pro+), product analytics (Pro+), auction boost 'Hot Auction 🔥' label (Pro+), featured homepage placement (Max), advanced analytics dashboard (Max), AI price suggestion (Max), bulk product upload (Max), custom shop page (Max).",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-show-a-hot-auction-label-on-auction-product-cards-for-pro-and-max-tier-sellers-this-label-should-appear-on-productcard-when-the-product-is-listed-as-an-auction-and-the-seller-has-pro-or-max-tier",
+      "title": "Show a 'Hot Auction 🔥' label on auction product cards for Pro and Max tier sellers. This label should appear on ProductCard when the product is listed as an auction and the seller has Pro or Max tier.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Starter (Free) tier: unlimited buying/selling, auctions, nearby meet-up, shipping, basic search, basic seller profile, no ads, no restrictions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Pro tier (₹99/month): priority search ranking, advanced filters, custom profile banner, product analytics, auction boost ('Hot Auction 🔥'), faster support",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Max tier (₹299/month): featured homepage placement, verified badge, advanced analytics dashboard, AI price suggestion, bulk product upload, custom shop page, early access to new features",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add a subscription tier data model to the backend with three tiers: Starter (Free), Pro (₹99/month), and Max (₹299/month). Store each user's current tier in their profile. Default all existing and new users to the Starter tier.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Resolt",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

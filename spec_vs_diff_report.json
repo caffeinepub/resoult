@@ -1,0 +1,71 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-01T12:14:57.979Z",
+  "summary": "The diff implements the vast majority of requirements across REQ-1 through REQ-5. Backend defines SubscriptionTier variants, user profiles include subscriptionTier, new users default to #starter, query and update functions are exposed. Frontend adds /plans route, PlansPage with tier cards, Navigation Plans link, SubscriptionBadge, FeatureLock component, ProductCard Hot Auction badge, and feature gating on BrowsePage and AddProductPage. A few specific gated features (custom profile banner, featured homepage placement, advanced analytics dashboard) are not evidenced in the diff, and the tier badge is shown in Navigation rather than a dedicated seller profile area.",
+  "missing_requirements": [
+    {
+      "id": "REQ-4",
+      "requirement": "Custom profile banner (Pro+) must be shown with a locked indicator for lower-tier users",
+      "reason": "The diff shows FeatureLock usage for advanced filters, product analytics, bulk upload, AI price suggestion, and custom shop page, but no evidence of a locked custom profile banner UI element.",
+      "evidence": [
+        "frontend/src/pages/BrowsePage.tsx",
+        "frontend/src/pages/AddProductPage.tsx",
+        "frontend/src/components/FeatureLock.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Featured homepage placement (Max) must be shown with a locked indicator for lower-tier users",
+      "reason": "No evidence in BrowsePage or any other page of a FeatureLock wrapping a featured homepage placement feature for Max tier.",
+      "evidence": [
+        "frontend/src/pages/BrowsePage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Advanced analytics dashboard (Max) must be shown with a locked indicator for lower-tier users",
+      "reason": "No dedicated analytics dashboard page or section with a FeatureLock for Max tier is evidenced in the diff.",
+      "evidence": [
+        "frontend/src/pages/AddProductPage.tsx",
+        "frontend/src/pages/BrowsePage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "requirement": "Subscription tier badge should be displayed on the authenticated user's seller profile area, not only in the navigation bar",
+      "reason": "The SubscriptionBadge is rendered in Navigation.tsx for the logged-in user, but the AC specifies the badge should appear in authenticated users profile areas. No dedicated profile page or seller profile view showing the badge is evidenced.",
+      "evidence": [
+        "frontend/src/components/Navigation.tsx",
+        "frontend/src/components/SubscriptionBadge.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "backend/migration.mo module providing a formal data migration path from an old actor state shape to the new one",
+      "reason": "The build request does not mention a migration module or any requirement to migrate existing data structures. This is an additional file not requested.",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    }
+  ],
+  "confidence": 0.8,
+  "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "frontend-file-summaries.txt",
+    "frontend/src/App.tsx",
+    "frontend/src/components/FeatureLock.tsx",
+    "frontend/src/components/Navigation.tsx",
+    "frontend/src/components/ProductCard.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/SubscriptionBadge.tsx",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/AddProductPage.tsx",
+    "frontend/src/pages/BrowsePage.tsx",
+    "frontend/src/pages/PlansPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

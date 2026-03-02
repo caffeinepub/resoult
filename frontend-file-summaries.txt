@@ -1,0 +1,22 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, now including a /plans route for the PlansPage alongside the existing browse and add-product routes.",
+  "frontend/src/pages/BrowsePage.tsx": "Browse page with category filtering and an Advanced Filters section wrapped in a FeatureLock requiring Pro tier, visible only to authenticated users.",
+  "frontend/src/pages/AddProductPage.tsx": "Protected listing page that now includes a \"Seller Tools\" section with FeatureLock-gated features: Product Analytics (Pro), Bulk Upload (Max), AI Price Suggestion (Max), and Custom Shop Page (Max).",
+  "frontend/src/components/Layout.tsx": "Layout wrapper component providing consistent navigation and footer across all pages.",
+  "frontend/src/components/Navigation.tsx": "Header navigation with a \"Plans\" link button, subscription tier badge display for authenticated users, and all existing auth/sell functionality.",
+  "frontend/src/components/Footer.tsx": "Footer component with centered copyright text for \"Resolt\" without external attribution links.",
+  "frontend/src/components/ProductForm.tsx": "Product listing form with camera integration for capturing product photos, category dropdown populated with all predefined categories (excluding \"All\"), photo preview with remove option, and form validation that converts captured photos to base64 data URLs for backend storage.",
+  "frontend/src/components/ProductCard.tsx": "Product card component that now shows a \"Hot Auction 🔥\" orange badge for Pro/Max tier auction listings, a plain \"Auction\" badge for Starter tier auctions, and uses ₹ currency symbol.",
+  "frontend/src/components/ProductGrid.tsx": "Responsive grid layout component for displaying multiple product cards.",
+  "frontend/src/components/CategoryFilter.tsx": "Category filter component that displays all predefined topic categories (Gaming, Sports, Bikes, Cars, TCG, Limited Editions, Watches, Pens) as clickable filter buttons with sophisticated styling, clear selected states, and smooth transitions, filtering out \"All\" since it's handled separately as the default view.",
+  "frontend/src/components/ProfileSetupModal.tsx": "Modal dialog that prompts new users to enter their name on first login, now correctly includes `subscriptionTier: SubscriptionTier.starter` when saving the initial user profile to satisfy the updated UserProfile type.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations, now including useUpgradeSubscriptionTier mutation and updated useAddProduct with isAuction parameter support.",
+  "frontend/src/index.css": "Global styles with sophisticated blue-violet OKLCH color system for light and dark modes, enhanced typography with better font rendering, and refined spacing tokens.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with three subscription tier color tokens (plan-starter green, plan-pro blue, plan-max purple) alongside the existing design system.",
+  "frontend/src/main.tsx": "Application entry point with QueryClient, InternetIdentity, and Toaster providers.",
+  "frontend/index.html": "HTML entry point with updated page title \"Resolt\" displayed in the browser tab.",
+  "frontend/src/components/CameraCapture.tsx": "Full-screen camera capture modal component with camera preview, capture/retake functionality, camera switching on mobile, comprehensive error handling (permission, not-found, not-supported, unknown), and loading states using the useCamera hook.",
+  "frontend/src/pages/PlansPage.tsx": "New pricing page displaying all three subscription tiers (Starter/Free, Pro/₹99, Max/₹299) in a side-by-side card layout with color-coded accents, feature lists, CTA buttons, and \"Current Plan\" highlighting for authenticated users.",
+  "frontend/src/components/SubscriptionBadge.tsx": "Reusable badge component that renders nothing for Starter tier, a blue \"🔵 Pro\" badge for Pro tier, and a purple \"🟣 Max ✔\" badge for Max tier.",
+  "frontend/src/components/FeatureLock.tsx": "Wrapper component that shows a clickable lock indicator with tier badge and upgrade prompt for users below the required tier, or renders children normally when the user has sufficient tier access."
+}

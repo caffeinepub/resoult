@@ -1,0 +1,107 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-03-01T12:14:57.983Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Add a subscription tier data model to the backend with three tiers: Starter (Free), Pro (₹99/month), and Max (₹299/month). Store each user's current tier in their profile. Default all existing and new users to the Starter tier.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Add a Pricing / Plans page accessible from the navigation bar that displays all three subscription tiers side by side. Each tier card must show its name, price, color indicator, feature list, and a call-to-action button.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/PlansPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/Navigation.tsx",
+          "frontend/src/hooks/useQueries.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/PlansPage.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/Navigation.tsx",
+          "frontend/src/hooks/useQueries.ts"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Display the user's current subscription tier badge on their seller profile. Starter shows no badge, Pro shows a 'Pro 🔵' badge, and Max shows a 'Max ✔' verified badge.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/SubscriptionBadge.tsx",
+          "frontend/src/components/Navigation.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/SubscriptionBadge.tsx",
+          "frontend/src/components/Navigation.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Mark Pro-tier and Max-tier exclusive features in the UI with locked indicators for users on lower tiers. Features to gate: advanced filters (Pro+), custom profile banner (Pro+), product analytics (Pro+), auction boost 'Hot Auction 🔥' label (Pro+), featured homepage placement (Max), advanced analytics dashboard (Max), AI price suggestion (Max), bulk product upload (Max), custom shop page (Max).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/FeatureLock.tsx",
+          "frontend/src/pages/BrowsePage.tsx",
+          "frontend/src/pages/AddProductPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/FeatureLock.tsx",
+          "frontend/src/pages/BrowsePage.tsx",
+          "frontend/src/pages/AddProductPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Show a 'Hot Auction 🔥' label on auction product cards for Pro and Max tier sellers. This label should appear on ProductCard when the product is listed as an auction and the seller has Pro or Max tier.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ProductCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProductCard.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
+    "build-request.json",
+    "build-template/README.md",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/FeatureLock.tsx",
+    "frontend/src/components/Navigation.tsx",
+    "frontend/src/components/ProductCard.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/SubscriptionBadge.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/pages/AddProductPage.tsx",
+    "frontend/src/pages/BrowsePage.tsx",
+    "frontend/src/pages/PlansPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

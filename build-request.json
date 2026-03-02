@@ -1,0 +1,138 @@
+{
+  "kind": "build_request",
+  "title": "Add Subscription Tier Plans (Starter, Pro, Max)",
+  "projectName": "Resolt",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add a subscription tier data model to the backend with three tiers: Starter (Free), Pro (₹99/month), and Max (₹299/month). Store each user's current tier in their profile. Default all existing and new users to the Starter tier.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "Starter (Free)",
+          "Pro",
+          "They'll have to pay ₹99/month",
+          "Max",
+          "They'll have to pay ₹299/month"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend defines a SubscriptionTier variant type with #Starter, #Pro, #Max values",
+        "User profile records include a subscriptionTier field",
+        "New users default to #Starter",
+        "Backend exposes a query to get the current user's tier",
+        "Backend exposes an update function to set a user's tier"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a Pricing / Plans page accessible from the navigation bar that displays all three subscription tiers side by side. Each tier card must show its name, price, color indicator, feature list, and a call-to-action button.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "🟢 Starter (Free)",
+          "🔵 Pro",
+          "🟣 Max"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A /plans route is added to the router and linked from the Navigation component",
+        "Starter card uses green accent, Pro card uses blue accent, Max card uses purple accent",
+        "Each card lists all features described in the request",
+        "Starter card shows 'Free' price; Pro shows '₹99/month'; Max shows '₹299/month'",
+        "Each card has a CTA button ('Get Started', 'Upgrade to Pro', 'Upgrade to Max')",
+        "The currently active plan for authenticated users is highlighted with a 'Current Plan' label"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Display the user's current subscription tier badge on their seller profile. Starter shows no badge, Pro shows a 'Pro 🔵' badge, and Max shows a 'Max ✔' verified badge.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "Basic seller profile",
+          "Custom profile banner",
+          "Verified badge ✔"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Authenticated users' profile areas display the correct tier badge",
+        "Starter users see no special badge",
+        "Pro users see a blue 'Pro' badge",
+        "Max users see a purple 'Max ✔' verified badge"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Mark Pro-tier and Max-tier exclusive features in the UI with locked indicators for users on lower tiers. Features to gate: advanced filters (Pro+), custom profile banner (Pro+), product analytics (Pro+), auction boost 'Hot Auction 🔥' label (Pro+), featured homepage placement (Max), advanced analytics dashboard (Max), AI price suggestion (Max), bulk product upload (Max), custom shop page (Max).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "Priority search ranking",
+          "Advanced filters",
+          "Custom profile banner",
+          "See product analytics (views, clicks)",
+          "Auction boost (shows as \"Hot Auction 🔥\")",
+          "Featured homepage placement",
+          "Verified badge ✔",
+          "Advanced analytics dashboard",
+          "AI price suggestion",
+          "Bulk product upload",
+          "Custom shop page (like mini website inside app)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "UI elements for Pro/Max-only features show a lock icon or 'Pro' / 'Max' pill badge when viewed by a lower-tier user",
+        "Clicking a locked feature redirects or opens a prompt directing the user to the Plans page",
+        "Unlocked features are fully accessible with no lock indicator shown"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Show a 'Hot Auction 🔥' label on auction product cards for Pro and Max tier sellers. This label should appear on ProductCard when the product is listed as an auction and the seller has Pro or Max tier.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-8"
+        ],
+        "quotes": [
+          "Auction boost (shows as \"Hot Auction 🔥\")"
+        ]
+      },
+      "acceptanceCriteria": [
+        "ProductCard displays a 'Hot Auction 🔥' badge when the seller is Pro or Max tier and the listing is an auction",
+        "The badge is visually distinct (e.g., orange/red background)",
+        "Starter-tier auction listings do not show the badge"
+      ]
+    }
+  ],
+  "constraints": [
+    "Pricing is display-only — no real payment processing should be implemented",
+    "Do not modify immutable frontend paths: useInternetIdentity.ts, useActor.ts, main.tsx, or components/ui",
+    "All Motoko logic must remain in the single main actor (backend/main.mo)"
+  ],
+  "nonGoals": [
+    "Actual payment gateway or Stripe integration",
+    "AI price suggestion implementation (display the feature as locked/coming soon for Max users)",
+    "Custom shop page full implementation (display as locked/coming soon for Max users)",
+    "Advanced analytics backend data collection (display as locked/coming soon for Max users)",
+    "Bulk upload backend processing (display as locked/coming soon for Max users)"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

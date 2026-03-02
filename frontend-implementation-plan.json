@@ -1,0 +1,105 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add Subscription Tier Plans (Starter, Pro, Max)",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Add a Pricing / Plans page accessible from the navigation bar that displays all three subscription tiers side by side with color indicators, feature lists, and call-to-action buttons",
+      "acceptanceCriteria": [
+        "A /plans route is added to the router and linked from the Navigation component",
+        "Starter card uses green accent, Pro card uses blue accent, Max card uses purple accent",
+        "Each card lists all features described in the request",
+        "Starter card shows 'Free' price; Pro shows '₹99/month'; Max shows '₹299/month'",
+        "Each card has a CTA button ('Get Started', 'Upgrade to Pro', 'Upgrade to Max')",
+        "The currently active plan for authenticated users is highlighted with a 'Current Plan' label"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/PlansPage.tsx",
+          "operation": "create",
+          "description": "Create a new Plans page component that displays all three subscription tiers (Starter, Pro, Max) in a side-by-side card layout. Each card shows the tier name, price (Free, ₹99/month, ₹299/month), color indicator (green for Starter, blue for Pro, purple for Max), feature list, and a CTA button. For authenticated users, fetch the current tier from backend and highlight it with a 'Current Plan' label. Include upgrade button handlers that call the upgradeSubscriptionTier backend method for Pro and Max tiers."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add a new route for /plans that renders the PlansPage component. Import PlansPage and register it in the TanStack Router configuration alongside the existing browse and add-product routes."
+        },
+        {
+          "path": "frontend/src/components/Navigation.tsx",
+          "operation": "modify",
+          "description": "Add a navigation link to the Plans page in the header navigation bar. Place the link between the logo/branding and the authenticated user actions section, making it visible to all users (authenticated and unauthenticated)."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a new mutation hook useUpgradeSubscriptionTier that calls the backend upgradeSubscriptionTier method with the selected tier. Invalidate the 'currentUserProfile' query after successful upgrade to refresh the user's tier. Include proper error handling and loading states."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Display the user's current subscription tier badge on their seller profile with tier-specific styling",
+      "acceptanceCriteria": [
+        "Authenticated users' profile areas display the correct tier badge",
+        "Starter users see no special badge",
+        "Pro users see a blue 'Pro' badge",
+        "Max users see a purple 'Max ✔' verified badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SubscriptionBadge.tsx",
+          "operation": "create",
+          "description": "Create a reusable SubscriptionBadge component that accepts a subscriptionTier prop (SubscriptionTier enum from backend types). Display nothing for 'starter' tier, a blue 'Pro 🔵' badge for 'pro' tier, and a purple 'Max ✔' badge for 'max' tier. Use Tailwind CSS with appropriate color classes and rounded badge styling."
+        },
+        {
+          "path": "frontend/src/components/Navigation.tsx",
+          "operation": "modify",
+          "description": "Import and render the SubscriptionBadge component in the Navigation component for authenticated users. Fetch the current user profile using useGetCallerUserProfile hook and pass the subscriptionTier to the badge component. Display the badge near the user's name or in the authenticated user actions area."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Mark Pro-tier and Max-tier exclusive features in the UI with locked indicators for users on lower tiers",
+      "acceptanceCriteria": [
+        "UI elements for Pro/Max-only features show a lock icon or 'Pro' / 'Max' pill badge when viewed by a lower-tier user",
+        "Clicking a locked feature redirects or opens a prompt directing the user to the Plans page",
+        "Unlocked features are fully accessible with no lock indicator shown"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FeatureLock.tsx",
+          "operation": "create",
+          "description": "Create a FeatureLock component that wraps feature UI elements and displays lock indicators for users below the required tier. Accept props: requiredTier ('pro' or 'max'), currentTier (from user profile), children (the feature content), and optional onLockedClick handler. Show a lock icon and tier badge overlay when locked. When clicked, navigate to /plans or show a tooltip prompting upgrade. For unlocked features, render children normally without any lock indicator."
+        },
+        {
+          "path": "frontend/src/pages/BrowsePage.tsx",
+          "operation": "modify",
+          "description": "Add advanced filters UI section (wrapped in FeatureLock requiring 'pro' tier) below the existing CategoryFilter component. Display filter options for price range, auction type, and seller tier. Fetch current user profile to determine tier access. For users below Pro tier, show the locked state with a prompt to upgrade."
+        },
+        {
+          "path": "frontend/src/pages/AddProductPage.tsx",
+          "operation": "modify",
+          "description": "Add UI sections for Pro+ and Max-tier exclusive features in the add product flow: product analytics preview (Pro+), bulk upload option (Max), AI price suggestion (Max), and custom shop page link (Max). Wrap each feature in a FeatureLock component with the appropriate required tier. Display 'Coming Soon' labels for non-implemented features (AI price suggestion, bulk upload, custom shop). Fetch current user profile to pass currentTier to FeatureLock components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Show a 'Hot Auction 🔥' label on auction product cards for Pro and Max tier sellers",
+      "acceptanceCriteria": [
+        "ProductCard displays a 'Hot Auction 🔥' badge when the seller is Pro or Max tier and the listing is an auction",
+        "The badge is visually distinct (e.g., orange/red background)",
+        "Starter-tier auction listings do not show the badge"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Add conditional rendering for a 'Hot Auction 🔥' badge when the product isAuction is true and the product.sellerTier is 'pro' or 'max'. Position the badge prominently on the product card (e.g., top-right corner or above the image). Use an orange or red background with white text for visual distinction. Do not show the badge for 'starter' tier sellers even if their listing is an auction."
+        }
+      ]
+    }
+  ]
+}

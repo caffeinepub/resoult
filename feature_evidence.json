@@ -1,0 +1,95 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-a-pricing-plans-page-accessible-from-the-navigation-bar-that-displays-all-three-subscription-tiers-side-by-side-each-tier-card-must-show-its-name-price-color-indicator-feature-list-and-a-call-to-action-button",
+      "featureTitle": "Add a Pricing / Plans page accessible from the navigation bar that displays all three subscription tiers side by side. Each tier card must show its name, price, color indicator, feature list, and a call-to-action button.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Navigation.tsx",
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/PlansPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-display-the-user-s-current-subscription-tier-badge-on-their-seller-profile-starter-shows-no-badge-pro-shows-a-pro-badge-and-max-shows-a-max-verified-badge",
+      "featureTitle": "Display the user's current subscription tier badge on their seller profile. Starter shows no badge, Pro shows a 'Pro 🔵' badge, and Max shows a 'Max ✔' verified badge.",
+      "files": [
+        "frontend/src/components/Navigation.tsx",
+        "frontend/src/components/SubscriptionBadge.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-mark-pro-tier-and-max-tier-exclusive-features-in-the-ui-with-locked-indicators-for-users-on-lower-tiers-features-to-gate-advanced-filters-pro-custom-profile-banner-pro-product-analytics-pro-auction-boost-hot-auction-label-pro-featured-homepage-placement-max-advanced-analytics-dashboard-max-ai-price-suggestion-max-bulk-product-upload-max-custom-shop-page-max",
+      "featureTitle": "Mark Pro-tier and Max-tier exclusive features in the UI with locked indicators for users on lower tiers. Features to gate: advanced filters (Pro+), custom profile banner (Pro+), product analytics (Pro+), auction boost 'Hot Auction 🔥' label (Pro+), featured homepage placement (Max), advanced analytics dashboard (Max), AI price suggestion (Max), bulk product upload (Max), custom shop page (Max).",
+      "files": [
+        "frontend/src/components/FeatureLock.tsx",
+        "frontend/src/pages/AddProductPage.tsx",
+        "frontend/src/pages/BrowsePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-show-a-hot-auction-label-on-auction-product-cards-for-pro-and-max-tier-sellers-this-label-should-appear-on-productcard-when-the-product-is-listed-as-an-auction-and-the-seller-has-pro-or-max-tier",
+      "featureTitle": "Show a 'Hot Auction 🔥' label on auction product cards for Pro and Max tier sellers. This label should appear on ProductCard when the product is listed as an auction and the seller has Pro or Max tier.",
+      "files": [
+        "frontend/src/components/ProductCard.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "camera@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
