@@ -1,15 +1,16 @@
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useActor } from './useActor';
-import type { Product, Category, UserProfile } from '../backend';
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import type { Category, Product, UserProfile } from "../backend";
+import type { SubscriptionTier } from "../backend";
+import { useActor } from "./useActor";
 
 export function useGetAllCategories() {
   const { actor, isFetching } = useActor();
 
   return useQuery<Category[]>({
-    queryKey: ['categories'],
+    queryKey: ["categories"],
     queryFn: async () => {
       if (!actor) return [];
-      return actor.getAllCategories();
+      return actor.getDefaultCategories();
     },
     enabled: !!actor && !isFetching,
   });
@@ -19,7 +20,7 @@ export function useGetCategoryProducts(categoryName: string) {
   const { actor, isFetching } = useActor();
 
   return useQuery<Product[]>({
-    queryKey: ['products', 'category', categoryName],
+    queryKey: ["products", "category", categoryName],
     queryFn: async () => {
       if (!actor || !categoryName) return [];
       return actor.getCategoryProducts(categoryName);
@@ -33,16 +34,19 @@ export function useGetAllProducts() {
   const { data: categories } = useGetAllCategories();
 
   return useQuery<Product[]>({
-    queryKey: ['products', 'all'],
+    queryKey: ["products", "all"],
     queryFn: async () => {
       if (!actor || !categories) return [];
-      
+
       const allProducts: Product[] = [];
-      for (const category of categories) {
+      // Filter out "All" category and fetch products from actual categories
+      const actualCategories = categories.filter((cat) => cat.name !== "All");
+
+      for (const category of actualCategories) {
         const products = await actor.getCategoryProducts(category.name);
         allProducts.push(...products);
       }
-      
+
       return allProducts;
     },
     enabled: !!actor && !isFetching && !!categories,
@@ -54,12 +58,26 @@ export function useAddProduct() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (params: { title: string; description: string; price: bigint; category: string }) => {
-      if (!actor) throw new Error('Actor not available');
-      return actor.addProduct(params.title, params.description, params.price, params.category);
+    mutationFn: async (params: {
+      title: string;
+      description: string;
+      price: bigint;
+      category: string;
+      photoUrl?: string;
+      isAuction?: boolean;
+    }) => {
+      if (!actor) throw new Error("Actor not available");
+      return actor.addProduct(
+        params.title,
+        params.description,
+        params.price,
+        params.category,
+        params.photoUrl || "",
+        params.isAuction ?? false,
+      );
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['products'] });
+      queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
 }
@@ -68,9 +86,9 @@ export function useGetCallerUserProfile() {
   const { actor, isFetching: actorFetching } = useActor();
 
   const query = useQuery<UserProfile | null>({
-    queryKey: ['currentUserProfile'],
+    queryKey: ["currentUserProfile"],
     queryFn: async () => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.getCallerUserProfile();
     },
     enabled: !!actor && !actorFetching,
@@ -90,11 +108,26 @@ export function useSaveCallerUserProfile() {
 
   return useMutation({
     mutationFn: async (profile: UserProfile) => {
-      if (!actor) throw new Error('Actor not available');
+      if (!actor) throw new Error("Actor not available");
       return actor.saveCallerUserProfile(profile);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['currentUserProfile'] });
+      queryClient.invalidateQueries({ queryKey: ["currentUserProfile"] });
+    },
+  });
+}
+
+export function useUpgradeSubscriptionTier() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (tier: SubscriptionTier) => {
+      if (!actor) throw new Error("Actor not available");
+      return actor.upgradeSubscriptionTier(tier);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["currentUserProfile"] });
     },
   });
 }

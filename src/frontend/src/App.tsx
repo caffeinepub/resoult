@@ -1,9 +1,15 @@
-import { createRouter, createRoute, createRootRoute, RouterProvider, Outlet } from '@tanstack/react-router';
-import { useInternetIdentity } from './hooks/useInternetIdentity';
-import Layout from './components/Layout';
-import BrowsePage from './pages/BrowsePage';
-import AddProductPage from './pages/AddProductPage';
-import ProfileSetupModal from './components/ProfileSetupModal';
+import {
+  Outlet,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+} from "@tanstack/react-router";
+import Layout from "./components/Layout";
+import ProfileSetupModal from "./components/ProfileSetupModal";
+import AddProductPage from "./pages/AddProductPage";
+import BrowsePage from "./pages/BrowsePage";
+import PlansPage from "./pages/PlansPage";
 
 const rootRoute = createRootRoute({
   component: () => (
@@ -16,17 +22,27 @@ const rootRoute = createRootRoute({
 
 const browseRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/',
+  path: "/",
   component: BrowsePage,
 });
 
 const addProductRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: '/add-product',
+  path: "/add-product",
   component: AddProductPage,
 });
 
-const routeTree = rootRoute.addChildren([browseRoute, addProductRoute]);
+const plansRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/plans",
+  component: PlansPage,
+});
+
+const routeTree = rootRoute.addChildren([
+  browseRoute,
+  addProductRoute,
+  plansRoute,
+]);
 
 const router = createRouter({ routeTree });
 

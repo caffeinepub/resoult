@@ -1,19 +1,25 @@
-import { useGetAllCategories } from '../hooks/useQueries';
-import { Button } from './ui/button';
-import { Loader2 } from 'lucide-react';
+import { Loader2 } from "lucide-react";
+import { useGetAllCategories } from "../hooks/useQueries";
+import { cn } from "../lib/utils";
 
 interface CategoryFilterProps {
   selectedCategory: string | null;
   onSelectCategory: (category: string | null) => void;
 }
 
-export default function CategoryFilter({ selectedCategory, onSelectCategory }: CategoryFilterProps) {
+export default function CategoryFilter({
+  selectedCategory,
+  onSelectCategory,
+}: CategoryFilterProps) {
   const { data: categories, isLoading } = useGetAllCategories();
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-8">
-        <Loader2 className="h-6 w-6 animate-spin text-primary" />
+        <Loader2
+          className="h-5 w-5 animate-spin text-primary"
+          data-ocid="category.loading_state"
+        />
       </div>
     );
   }
@@ -22,26 +28,44 @@ export default function CategoryFilter({ selectedCategory, onSelectCategory }: C
     return null;
   }
 
+  const filteredCategories = categories.filter((cat) => cat.name !== "All");
+
   return (
     <div className="mb-8">
-      <h2 className="text-lg font-semibold mb-4">Filter by Category</h2>
-      <div className="flex flex-wrap gap-2">
-        <Button
-          variant={selectedCategory === null ? 'default' : 'outline'}
+      <div
+        className="flex gap-2 overflow-x-auto scrollbar-hide pb-2 -mx-1 px-1"
+        aria-label="Filter by category"
+      >
+        {/* All pill */}
+        <button
+          type="button"
           onClick={() => onSelectCategory(null)}
-          className={selectedCategory === null ? 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white' : ''}
+          data-ocid="category.filter.tab"
+          className={cn(
+            "flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 whitespace-nowrap",
+            selectedCategory === null
+              ? "bg-primary text-primary-foreground border-primary shadow-soft"
+              : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground hover:bg-accent",
+          )}
         >
-          All Categories
-        </Button>
-        {categories.map((category) => (
-          <Button
+          All
+        </button>
+
+        {filteredCategories.map((category, index) => (
+          <button
+            type="button"
             key={category.name}
-            variant={selectedCategory === category.name ? 'default' : 'outline'}
             onClick={() => onSelectCategory(category.name)}
-            className={selectedCategory === category.name ? 'bg-gradient-to-r from-orange-600 to-amber-600 hover:from-orange-700 hover:to-amber-700 text-white' : ''}
+            data-ocid={`category.filter.tab.${index + 1}`}
+            className={cn(
+              "flex-shrink-0 px-4 py-2 rounded-full text-sm font-semibold border transition-all duration-200 whitespace-nowrap",
+              selectedCategory === category.name
+                ? "bg-primary text-primary-foreground border-primary shadow-soft"
+                : "bg-card text-muted-foreground border-border hover:border-primary/50 hover:text-foreground hover:bg-accent",
+            )}
           >
             {category.name}
-          </Button>
+          </button>
         ))}
       </div>
     </div>

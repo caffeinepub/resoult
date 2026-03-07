@@ -25,13 +25,24 @@ export const UserRole = IDL.Variant({
   'guest' : IDL.Null,
 });
 export const Category = IDL.Record({ 'name' : IDL.Text });
-export const UserProfile = IDL.Record({ 'name' : IDL.Text });
+export const SubscriptionTier = IDL.Variant({
+  'max' : IDL.Null,
+  'pro' : IDL.Null,
+  'starter' : IDL.Null,
+});
+export const UserProfile = IDL.Record({
+  'name' : IDL.Text,
+  'subscriptionTier' : SubscriptionTier,
+});
 export const Product = IDL.Record({
   'id' : IDL.Nat,
   'title' : IDL.Text,
   'description' : IDL.Text,
+  'photoUrl' : IDL.Text,
+  'sellerTier' : SubscriptionTier,
   'category' : IDL.Text,
   'price' : IDL.Nat,
+  'isAuction' : IDL.Bool,
 });
 
 export const idlService = IDL.Service({
@@ -62,12 +73,17 @@ export const idlService = IDL.Service({
     ),
   '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
-  'addProduct' : IDL.Func([IDL.Text, IDL.Text, IDL.Nat, IDL.Text], [], []),
+  'addProduct' : IDL.Func(
+      [IDL.Text, IDL.Text, IDL.Nat, IDL.Text, IDL.Text, IDL.Bool],
+      [],
+      [],
+    ),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'getAllCategories' : IDL.Func([], [IDL.Vec(Category)], ['query']),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getCategoryProducts' : IDL.Func([IDL.Text], [IDL.Vec(Product)], ['query']),
+  'getDefaultCategories' : IDL.Func([], [IDL.Vec(Category)], []),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
       [IDL.Opt(UserProfile)],
@@ -75,6 +91,7 @@ export const idlService = IDL.Service({
     ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'upgradeSubscriptionTier' : IDL.Func([SubscriptionTier], [], []),
 });
 
 export const idlInitArgs = [];
@@ -97,13 +114,24 @@ export const idlFactory = ({ IDL }) => {
     'guest' : IDL.Null,
   });
   const Category = IDL.Record({ 'name' : IDL.Text });
-  const UserProfile = IDL.Record({ 'name' : IDL.Text });
+  const SubscriptionTier = IDL.Variant({
+    'max' : IDL.Null,
+    'pro' : IDL.Null,
+    'starter' : IDL.Null,
+  });
+  const UserProfile = IDL.Record({
+    'name' : IDL.Text,
+    'subscriptionTier' : SubscriptionTier,
+  });
   const Product = IDL.Record({
     'id' : IDL.Nat,
     'title' : IDL.Text,
     'description' : IDL.Text,
+    'photoUrl' : IDL.Text,
+    'sellerTier' : SubscriptionTier,
     'category' : IDL.Text,
     'price' : IDL.Nat,
+    'isAuction' : IDL.Bool,
   });
   
   return IDL.Service({
@@ -134,12 +162,17 @@ export const idlFactory = ({ IDL }) => {
       ),
     '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
-    'addProduct' : IDL.Func([IDL.Text, IDL.Text, IDL.Nat, IDL.Text], [], []),
+    'addProduct' : IDL.Func(
+        [IDL.Text, IDL.Text, IDL.Nat, IDL.Text, IDL.Text, IDL.Bool],
+        [],
+        [],
+      ),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'getAllCategories' : IDL.Func([], [IDL.Vec(Category)], ['query']),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getCategoryProducts' : IDL.Func([IDL.Text], [IDL.Vec(Product)], ['query']),
+    'getDefaultCategories' : IDL.Func([], [IDL.Vec(Category)], []),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
         [IDL.Opt(UserProfile)],
@@ -147,6 +180,7 @@ export const idlFactory = ({ IDL }) => {
       ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'upgradeSubscriptionTier' : IDL.Func([SubscriptionTier], [], []),
   });
 };
 

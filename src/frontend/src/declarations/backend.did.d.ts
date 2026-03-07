@@ -15,10 +15,19 @@ export interface Product {
   'id' : bigint,
   'title' : string,
   'description' : string,
+  'photoUrl' : string,
+  'sellerTier' : SubscriptionTier,
   'category' : string,
   'price' : bigint,
+  'isAuction' : boolean,
 }
-export interface UserProfile { 'name' : string }
+export type SubscriptionTier = { 'max' : null } |
+  { 'pro' : null } |
+  { 'starter' : null };
+export interface UserProfile {
+  'name' : string,
+  'subscriptionTier' : SubscriptionTier,
+}
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
   { 'guest' : null };
@@ -50,15 +59,20 @@ export interface _SERVICE {
   >,
   '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
-  'addProduct' : ActorMethod<[string, string, bigint, string], undefined>,
+  'addProduct' : ActorMethod<
+    [string, string, bigint, string, string, boolean],
+    undefined
+  >,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'getAllCategories' : ActorMethod<[], Array<Category>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getCategoryProducts' : ActorMethod<[string], Array<Product>>,
+  'getDefaultCategories' : ActorMethod<[], Array<Category>>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'upgradeSubscriptionTier' : ActorMethod<[SubscriptionTier], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

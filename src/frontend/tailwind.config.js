@@ -16,15 +16,8 @@ export default {
         },
         extend: {
             fontFamily: {
-                sans: [
-                    'Inter',
-                    'system-ui',
-                    '-apple-system',
-                    'BlinkMacSystemFont',
-                    'Segoe UI',
-                    'Roboto',
-                    'sans-serif'
-                ]
+                sans: ['General Sans', 'system-ui', 'sans-serif'],
+                display: ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
             },
             colors: {
                 border: 'oklch(var(--border))',
@@ -60,6 +53,18 @@ export default {
                     DEFAULT: 'oklch(var(--card))',
                     foreground: 'oklch(var(--card-foreground))'
                 },
+                success: {
+                    DEFAULT: 'oklch(var(--success) / <alpha-value>)',
+                    foreground: 'oklch(var(--success-foreground))'
+                },
+                warning: {
+                    DEFAULT: 'oklch(var(--warning) / <alpha-value>)',
+                    foreground: 'oklch(var(--warning-foreground))'
+                },
+                // Subscription tier colors
+                'plan-starter': 'oklch(0.60 0.17 145)',
+                'plan-pro': 'oklch(0.55 0.18 240)',
+                'plan-max': 'oklch(0.55 0.20 300)',
                 chart: {
                     1: 'oklch(var(--chart-1))',
                     2: 'oklch(var(--chart-2))',
@@ -84,7 +89,10 @@ export default {
                 sm: 'calc(var(--radius) - 4px)'
             },
             boxShadow: {
-                xs: '0 1px 2px 0 rgba(0,0,0,0.05)'
+                'xs': '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+                'soft': '0 2px 8px -2px rgb(0 0 0 / 0.08), 0 4px 16px -4px rgb(0 0 0 / 0.04)',
+                'medium': '0 4px 16px -2px rgb(0 0 0 / 0.1), 0 8px 24px -4px rgb(0 0 0 / 0.06)',
+                'strong': '0 8px 32px -4px rgb(0 0 0 / 0.12), 0 12px 48px -8px rgb(0 0 0 / 0.08)'
             },
             keyframes: {
                 'accordion-down': {
@@ -94,11 +102,16 @@ export default {
                 'accordion-up': {
                     from: { height: 'var(--radix-accordion-content-height)' },
                     to: { height: '0' }
+                },
+                'fade-in': {
+                    from: { opacity: '0', transform: 'translateY(8px)' },
+                    to: { opacity: '1', transform: 'translateY(0)' }
                 }
             },
             animation: {
                 'accordion-down': 'accordion-down 0.2s ease-out',
-                'accordion-up': 'accordion-up 0.2s ease-out'
+                'accordion-up': 'accordion-up 0.2s ease-out',
+                'fade-in': 'fade-in 0.4s ease-out'
             }
         }
     },
